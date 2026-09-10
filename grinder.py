@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Discord Game Grinder - Curated Clean Games Rotation Engine
-Rotates between 35+ top-tier, mainstream, 100% clean games.
-Zero sus/hentai games. 0.0% CPU usage.
+Discord Game Grinder - 110+ Clean Games Rotation Engine
+Rotates across 115 strictly curated, mainstream, non-sus games.
+0.0% CPU usage.
 Author: IsDevCan
 """
 
@@ -17,265 +17,26 @@ import signal
 import random
 import argparse
 
-# Curated 100% clean, non-sus, mainstream games
-CLEAN_GAMES_POOL = [
-    {
-        "key": "valorant",
-        "name": "VALORANT",
-        "id": "811469787657928704",
-        "details": "Competitive",
-        "state": "In Match (11 - 9)",
-        "is_valorant": True
-    },
-    {
-        "key": "fortnite",
-        "name": "Fortnite",
-        "id": "432980957394370572",
-        "details": "Battle Royale",
-        "state": "In Match - 18 Remaining",
-        "is_valorant": False
-    },
-    {
-        "key": "apex",
-        "name": "Apex Legends",
-        "id": "542075586886107149",
-        "details": "Ranked Leagues",
-        "state": "In Match - 4 Squads Left",
-        "is_valorant": False
-    },
-    {
-        "key": "overwatch",
-        "name": "Overwatch",
-        "id": "356875221078245376",
-        "details": "Competitive Role Queue",
-        "state": "Escorting Payload",
-        "is_valorant": False
-    },
-    {
-        "key": "rocket_league",
-        "name": "Rocket League",
-        "id": "356877880938070016",
-        "details": "Competitive 3v3",
-        "state": "In Overtime (2 - 2)",
-        "is_valorant": False
-    },
-    {
-        "key": "siege",
-        "name": "Rainbow Six Siege",
-        "id": "356876590342340608",
-        "details": "Ranked Bomb",
-        "state": "Round 5 (Match Point)",
-        "is_valorant": False
-    },
-    {
-        "key": "minecraft",
-        "name": "Minecraft",
-        "id": "432980957394370572",
-        "details": "Survival Mode",
-        "state": "Exploring Caves",
-        "is_valorant": False
-    },
-    {
-        "key": "roblox",
-        "name": "Roblox",
-        "id": "363445589247131668",
-        "details": "Playing with Friends",
-        "state": "In Server",
-        "is_valorant": False
-    },
-    {
-        "key": "gta5",
-        "name": "Grand Theft Auto V",
-        "id": "356869127241072640",
-        "details": "GTA Online",
-        "state": "Running Heist Setup",
-        "is_valorant": False
-    },
-    {
-        "key": "tf2",
-        "name": "Team Fortress 2",
-        "id": "356888577310851072",
-        "details": "Casual Payload",
-        "state": "Defending Cart",
-        "is_valorant": False
-    },
-    {
-        "key": "terraria",
-        "name": "Terraria",
-        "id": "356952771078914048",
-        "details": "Expert Mode",
-        "state": "Mining in Caverns",
-        "is_valorant": False
-    },
-    {
-        "key": "rust",
-        "name": "Rust",
-        "id": "356889240837160960",
-        "details": "Vanilla Server",
-        "state": "Roaming with Clan",
-        "is_valorant": False
-    },
-    {
-        "key": "subnautica",
-        "name": "Subnautica",
-        "id": "356953046200221696",
-        "details": "Survival",
-        "state": "Exploring Deep Reef",
-        "is_valorant": False
-    },
-    {
-        "key": "fall_guys",
-        "name": "Fall Guys",
-        "id": "742897755160313986",
-        "details": "Main Show",
-        "state": "Final Round",
-        "is_valorant": False
-    },
-    {
-        "key": "among_us",
-        "name": "Among Us",
-        "id": "754796366036172901",
-        "details": "Classic Mode",
-        "state": "Doing Tasks in Electrical",
-        "is_valorant": False
-    },
-    {
-        "key": "stardew",
-        "name": "Stardew Valley",
-        "id": "359509387670192128",
-        "details": "Spring, Year 2",
-        "state": "Watering Crops",
-        "is_valorant": False
-    },
-    {
-        "key": "hollow_knight",
-        "name": "Hollow Knight",
-        "id": "363431029484027904",
-        "details": "City of Tears",
-        "state": "Exploring Map",
-        "is_valorant": False
-    },
-    {
-        "key": "geometry_dash",
-        "name": "Geometry Dash",
-        "id": "356942674672091136",
-        "details": "Demon Level",
-        "state": "Practice Mode (84%)",
-        "is_valorant": False
-    },
-    {
-        "key": "brawlhalla",
-        "name": "Brawlhalla",
-        "id": "356944273133928458",
-        "details": "Ranked 1v1",
-        "state": "In Match",
-        "is_valorant": False
-    },
-    {
-        "key": "portal2",
-        "name": "Portal 2",
-        "id": "359508941782122496",
-        "details": "Co-op Campaign",
-        "state": "Test Chamber 14",
-        "is_valorant": False
-    },
-    {
-        "key": "cyberpunk",
-        "name": "Cyberpunk 2077",
-        "id": "787033502848122880",
-        "details": "Night City",
-        "state": "Exploring Watson",
-        "is_valorant": False
-    },
-    {
-        "key": "elden_ring",
-        "name": "Elden Ring",
-        "id": "946950247785848882",
-        "details": "The Lands Between",
-        "state": "Exploring Altus Plateau",
-        "is_valorant": False
-    },
-    {
-        "key": "rdr2",
-        "name": "Red Dead Redemption 2",
-        "id": "639144865007992832",
-        "details": "Story Mode",
-        "state": "Exploring Saint Denis",
-        "is_valorant": False
-    },
-    {
-        "key": "bg3",
-        "name": "Baldur's Gate 3",
-        "id": "1140026850428518400",
-        "details": "Act 3",
-        "state": "Exploring Lower City",
-        "is_valorant": False
-    },
-    {
-        "key": "mhw",
-        "name": "Monster Hunter: World",
-        "id": "477152881196269569",
-        "details": "High Rank Quest",
-        "state": "Hunting Nergigante",
-        "is_valorant": False
-    },
-    {
-        "key": "civ6",
-        "name": "Civilization VI",
-        "id": "363413834301571072",
-        "details": "Turn 142",
-        "state": "Building Wonders",
-        "is_valorant": False
-    },
-    {
-        "key": "cities",
-        "name": "Cities: Skylines",
-        "id": "356954111901433856",
-        "details": "Population: 85,000",
-        "state": "Expanding Highway Network",
-        "is_valorant": False
-    },
-    {
-        "key": "dont_starve",
-        "name": "Don't Starve Together",
-        "id": "359508004078616586",
-        "details": "Autumn Day 24",
-        "state": "Gathering Resources",
-        "is_valorant": False
-    },
-    {
-        "key": "l4d2",
-        "name": "Left 4 Dead 2",
-        "id": "356954277803065354",
-        "details": "The Parish",
-        "state": "Campaign Chapter 3",
-        "is_valorant": False
-    },
-    {
-        "key": "gmod",
-        "name": "Garry's Mod",
-        "id": "356879032584896512",
-        "details": "Prop Hunt",
-        "state": "In Server (Round 4)",
-        "is_valorant": False
-    },
-    {
-        "key": "dota2",
-        "name": "Dota 2",
-        "id": "356875988589740042",
-        "details": "Ranked All Pick",
-        "state": "Mid Lane (22 mins)",
-        "is_valorant": False
-    },
-    {
-        "key": "wow",
-        "name": "World of Warcraft",
-        "id": "356875762940379136",
-        "details": "Mythic Dungeon",
-        "state": "Clearing Trash (+15)",
-        "is_valorant": False
-    }
-]
+DIR = os.path.dirname(os.path.abspath(__file__))
+GAMES_FILE = os.path.join(DIR, "games.json")
+
+def load_games():
+    if os.path.exists(GAMES_FILE):
+        try:
+            with open(GAMES_FILE, "r") as f:
+                games = json.load(f)
+                if len(games) >= 50:
+                    return games
+        except Exception:
+            pass
+    # Fallback
+    return [
+        {"key": "valorant", "name": "VALORANT", "id": "811469787657928704", "details": "Competitive", "state": "In Match (11 - 9)", "is_valorant": True},
+        {"key": "fortnite", "name": "Fortnite", "id": "432980957394370572", "details": "Battle Royale", "state": "In Match - 18 Remaining", "is_valorant": False},
+        {"key": "apex", "name": "Apex Legends", "id": "542075586886107149", "details": "Ranked Leagues", "state": "In Match", "is_valorant": False}
+    ]
+
+CLEAN_GAMES_POOL = load_games()
 
 VALORANT_MAPS = [
     ("ascent", "Ascent"),
@@ -479,8 +240,8 @@ def format_duration(seconds):
     return f"{h:02d}h {m:02d}m {s:02d}s"
 
 def main():
-    parser = argparse.ArgumentParser(description="Discord Game Hours Grinder - Multi-Game Rotation")
-    parser.add_argument("--game", default="auto", help="Game key (e.g. valorant, fortnite, apex, elden_ring) or 'auto' for rotation")
+    parser = argparse.ArgumentParser(description="Discord Game Hours Grinder - 100+ Games Rotation")
+    parser.add_argument("--game", default="auto", help="Game key or 'auto' for 100+ games rotation")
     parser.add_argument("--interval", type=int, default=5400, help="Rotation interval in seconds (default: 5400 = 1.5 hours)")
     args = parser.parse_args()
 
@@ -490,11 +251,10 @@ def main():
     last_switch = time.time()
     current_ipc = None
 
-    # Determine starting game
     if mode == "auto":
-        current_game_obj = CLEAN_GAMES_POOL[0]  # Start with Valorant
+        current_game_obj = CLEAN_GAMES_POOL[0]
     else:
-        matched = [g for g in CLEAN_GAMES_POOL if g["key"] == mode]
+        matched = [g for g in CLEAN_GAMES_POOL if g["key"] == mode or g["name"].lower() == mode]
         if matched:
             current_game_obj = matched[0]
         else:
@@ -503,18 +263,16 @@ def main():
     game_start_time = int(time.time())
 
     print("=" * 65)
-    print("🎮 DISCORD GAME GRINDER - MULTI-GAME ROTATION ENGINE")
-    print(f"Total Curated Clean Games: {len(CLEAN_GAMES_POOL)}")
-    print("Strict Filter             : 100% Safe (Zero sus / Zero NSFW)")
-    print(f"Mode                      : {mode.upper()}")
-    print("CPU Usage                 : 0.0% (Battery friendly)")
+    print("🎮 DISCORD GAME GRINDER - 100+ CLEAN GAMES ROTATION")
+    print(f"Total Curated Clean Games : {len(CLEAN_GAMES_POOL)}")
+    print("Strict Safety Filter      : 100% Non-Sus / Zero NSFW")
+    print(f"Active Mode               : {mode.upper()}")
+    print("CPU Usage                 : 0.0% (Battery & thermal friendly)")
     print("=" * 65)
 
     while running:
-        # Check if auto rotation time reached
         if mode == "auto" and (time.time() - last_switch > args.interval):
-            # Pick a new random clean game different from current
-            choices = [g for g in CLEAN_GAMES_POOL if g["key"] != current_game_obj["key"]]
+            choices = [g for g in CLEAN_GAMES_POOL if g["id"] != current_game_obj["id"]]
             current_game_obj = random.choice(choices)
             print(f"\n[🔄] Rotating game to: {current_game_obj['name']} ({current_game_obj['details']})")
             if current_ipc:
@@ -522,7 +280,7 @@ def main():
                 current_ipc = None
             last_switch = time.time()
             game_start_time = int(time.time())
-            if current_game_obj["is_valorant"]:
+            if current_game_obj.get("is_valorant"):
                 val_sim.new_match()
 
         if current_ipc is None or current_ipc.sock is None:
@@ -535,8 +293,7 @@ def main():
                 continue
             print(f"\n[✓] Connected to Discord! Playing: {current_game_obj['name']}")
 
-        # Build activity
-        if current_game_obj["is_valorant"]:
+        if current_game_obj.get("is_valorant"):
             act = val_sim.step()
             details = act["details"]
             state = act["state"]
@@ -563,7 +320,7 @@ def main():
             continue
 
         elapsed = time.time() - session_start
-        status_line = f"\r⏳ Grind: {format_duration(elapsed)} | Game: {current_game_obj['name']} | {details} - {state}"
+        status_line = f"\r⏳ Total: {format_duration(elapsed)} | Game: {current_game_obj['name']} | {details} - {state}"
         sys.stdout.write(status_line.ljust(95))
         sys.stdout.flush()
 
@@ -571,7 +328,7 @@ def main():
 
     if current_ipc:
         current_ipc.close()
-    print(f"\n[✓] Finished. Total time grinded: {format_duration(time.time() - session_start)}")
+    print(f"\n[✓] Session ended. Total grinded: {format_duration(time.time() - session_start)}")
 
 if __name__ == "__main__":
     main()

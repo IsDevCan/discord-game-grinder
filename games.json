@@ -1,0 +1,922 @@
+[
+  {
+    "key": "valorant",
+    "name": "VALORANT",
+    "id": "811469787657928704",
+    "details": "Competitive",
+    "state": "In Match (11 - 9)",
+    "is_valorant": true
+  },
+  {
+    "key": "fortnite",
+    "name": "Fortnite",
+    "id": "432980957394370572",
+    "details": "Battle Royale",
+    "state": "In Match - 18 Remaining",
+    "is_valorant": false
+  },
+  {
+    "key": "apex_legends",
+    "name": "Apex Legends",
+    "id": "542075586886107149",
+    "details": "Ranked Leagues",
+    "state": "In Match - 4 Squads Left",
+    "is_valorant": false
+  },
+  {
+    "key": "rocket_league",
+    "name": "Rocket League",
+    "id": "356877880938070016",
+    "details": "Competitive 3v3",
+    "state": "In Overtime (2 - 2)",
+    "is_valorant": false
+  },
+  {
+    "key": "overwatch",
+    "name": "Overwatch",
+    "id": "356875221078245376",
+    "details": "Competitive Role Queue",
+    "state": "Escorting Payload",
+    "is_valorant": false
+  },
+  {
+    "key": "rainbow_six_siege",
+    "name": "Rainbow Six Siege",
+    "id": "356876590342340608",
+    "details": "Ranked Bomb",
+    "state": "Round 5 (Match Point)",
+    "is_valorant": false
+  },
+  {
+    "key": "minecraft",
+    "name": "Minecraft",
+    "id": "432980957394370572",
+    "details": "Survival Mode",
+    "state": "Exploring Caves",
+    "is_valorant": false
+  },
+  {
+    "key": "roblox",
+    "name": "Roblox",
+    "id": "363445589247131668",
+    "details": "Playing with Friends",
+    "state": "In Server",
+    "is_valorant": false
+  },
+  {
+    "key": "grand_theft_auto_v",
+    "name": "Grand Theft Auto V",
+    "id": "356869127241072640",
+    "details": "GTA Online",
+    "state": "Running Heist Setup",
+    "is_valorant": false
+  },
+  {
+    "key": "elden_ring",
+    "name": "Elden Ring",
+    "id": "946950247785848882",
+    "details": "The Lands Between",
+    "state": "Exploring Altus Plateau",
+    "is_valorant": false
+  },
+  {
+    "key": "cyberpunk_2077",
+    "name": "Cyberpunk 2077",
+    "id": "787033502848122880",
+    "details": "Night City",
+    "state": "Gig: Monster Hunt",
+    "is_valorant": false
+  },
+  {
+    "key": "red_dead_redemption_2",
+    "name": "Red Dead Redemption 2",
+    "id": "639144865007992832",
+    "details": "Story Mode",
+    "state": "Exploring Saint Denis",
+    "is_valorant": false
+  },
+  {
+    "key": "baldur_s_gate_3",
+    "name": "Baldur's Gate 3",
+    "id": "1140026850428518400",
+    "details": "Act 3",
+    "state": "Exploring Lower City",
+    "is_valorant": false
+  },
+  {
+    "key": "subnautica",
+    "name": "Subnautica",
+    "id": "356953046200221696",
+    "details": "Survival",
+    "state": "Exploring Deep Reef",
+    "is_valorant": false
+  },
+  {
+    "key": "rust",
+    "name": "Rust",
+    "id": "356889240837160960",
+    "details": "Vanilla Server",
+    "state": "Roaming with Clan",
+    "is_valorant": false
+  },
+  {
+    "key": "terraria",
+    "name": "Terraria",
+    "id": "356952771078914048",
+    "details": "Expert Mode",
+    "state": "Mining in Caverns",
+    "is_valorant": false
+  },
+  {
+    "key": "stardew_valley",
+    "name": "Stardew Valley",
+    "id": "359509387670192128",
+    "details": "Spring, Year 2",
+    "state": "Watering Crops",
+    "is_valorant": false
+  },
+  {
+    "key": "fall_guys",
+    "name": "Fall Guys",
+    "id": "742897755160313986",
+    "details": "Main Show",
+    "state": "Final Round",
+    "is_valorant": false
+  },
+  {
+    "key": "among_us",
+    "name": "Among Us",
+    "id": "754796366036172901",
+    "details": "Classic Mode",
+    "state": "Tasks in Electrical",
+    "is_valorant": false
+  },
+  {
+    "key": "hollow_knight",
+    "name": "Hollow Knight",
+    "id": "363431029484027904",
+    "details": "City of Tears",
+    "state": "Exploring Map",
+    "is_valorant": false
+  },
+  {
+    "key": "geometry_dash",
+    "name": "Geometry Dash",
+    "id": "356942674672091136",
+    "details": "Demon Level",
+    "state": "Practice Mode (84%)",
+    "is_valorant": false
+  },
+  {
+    "key": "brawlhalla",
+    "name": "Brawlhalla",
+    "id": "356944273133928458",
+    "details": "Ranked 1v1",
+    "state": "In Match",
+    "is_valorant": false
+  },
+  {
+    "key": "portal_2",
+    "name": "Portal 2",
+    "id": "359508941782122496",
+    "details": "Co-op Campaign",
+    "state": "Test Chamber 14",
+    "is_valorant": false
+  },
+  {
+    "key": "monster_hunter__world",
+    "name": "Monster Hunter: World",
+    "id": "477152881196269569",
+    "details": "High Rank Quest",
+    "state": "Hunting Nergigante",
+    "is_valorant": false
+  },
+  {
+    "key": "team_fortress_2",
+    "name": "Team Fortress 2",
+    "id": "356888577310851072",
+    "details": "Casual Payload",
+    "state": "Defending Cart",
+    "is_valorant": false
+  },
+  {
+    "key": "dota_2",
+    "name": "Dota 2",
+    "id": "356875988589740042",
+    "details": "Ranked All Pick",
+    "state": "Mid Lane (22 mins)",
+    "is_valorant": false
+  },
+  {
+    "key": "world_of_warcraft",
+    "name": "World of Warcraft",
+    "id": "356875762940379136",
+    "details": "Mythic Dungeon",
+    "state": "Clearing Trash (+15)",
+    "is_valorant": false
+  },
+  {
+    "key": "civilization_vi",
+    "name": "Civilization VI",
+    "id": "363413834301571072",
+    "details": "Turn 142",
+    "state": "Building Wonders",
+    "is_valorant": false
+  },
+  {
+    "key": "cities__skylines",
+    "name": "Cities: Skylines",
+    "id": "356954111901433856",
+    "details": "Population: 85,000",
+    "state": "Expanding Highway",
+    "is_valorant": false
+  },
+  {
+    "key": "don_t_starve_together",
+    "name": "Don't Starve Together",
+    "id": "359508004078616586",
+    "details": "Autumn Day 24",
+    "state": "Gathering Resources",
+    "is_valorant": false
+  },
+  {
+    "key": "left_4_dead_2",
+    "name": "Left 4 Dead 2",
+    "id": "356954277803065354",
+    "details": "The Parish",
+    "state": "Campaign Chapter 3",
+    "is_valorant": false
+  },
+  {
+    "key": "garry_s_mod",
+    "name": "Garry's Mod",
+    "id": "356879032584896512",
+    "details": "Prop Hunt",
+    "state": "In Server (Round 4)",
+    "is_valorant": false
+  },
+  {
+    "key": "hearthstone",
+    "name": "Hearthstone",
+    "id": "356875890958925834",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "heroes_of_the_storm",
+    "name": "Heroes of the Storm",
+    "id": "356878860190613504",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "z1__battle_royale",
+    "name": "Z1: Battle Royale",
+    "id": "356881342321000448",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "ark__survival_evolved",
+    "name": "ARK: Survival Evolved",
+    "id": "356887282982191114",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "path_of_exile",
+    "name": "Path of Exile",
+    "id": "356888453796986880",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "final_fantasy_xiv_online",
+    "name": "FINAL FANTASY XIV ONLINE",
+    "id": "356889262362329098",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_walking_dead",
+    "name": "The Walking Dead",
+    "id": "356953358952562688",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "sonic_mania",
+    "name": "Sonic Mania",
+    "id": "356953520278339584",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "golf_with_your_friends",
+    "name": "Golf With Your Friends",
+    "id": "356954034701205504",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "arma_3",
+    "name": "Arma 3",
+    "id": "356954176338788352",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "project_64",
+    "name": "Project 64",
+    "id": "357606193918771210",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "runescape",
+    "name": "RuneScape",
+    "id": "357606832899883008",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "dead_by_daylight",
+    "name": "Dead by Daylight",
+    "id": "357607133254254632",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "war_thunder",
+    "name": "War Thunder",
+    "id": "357607478105604096",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "battlefield_1",
+    "name": "Battlefield 1",
+    "id": "358417041981571082",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_binding_of_isaac__rebirth",
+    "name": "The Binding of Isaac: Rebirth",
+    "id": "358420454764969994",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "black_squad",
+    "name": "Black Squad",
+    "id": "358421399670358026",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "hiveswap__act_1",
+    "name": "HIVESWAP: Act 1",
+    "id": "358421573071536128",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "hearts_of_iron_iv",
+    "name": "Hearts of Iron IV",
+    "id": "358421669603311616",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "blade___soul",
+    "name": "Blade & Soul",
+    "id": "358421781398421514",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "sid_meier_s_civilization_v",
+    "name": "Sid Meier's Civilization V",
+    "id": "358421904601776138",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "smite",
+    "name": "SMITE",
+    "id": "358422012990849024",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "factorio",
+    "name": "Factorio",
+    "id": "358422126602223616",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "diablo_iii",
+    "name": "Diablo III",
+    "id": "358425751197974528",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "starcraft_ii__battle_chest",
+    "name": "StarCraft II: Battle Chest",
+    "id": "358425800766128128",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_elder_scrolls_v__skyrim",
+    "name": "The Elder Scrolls V: Skyrim",
+    "id": "359507724196773888",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "tom_clancy_s_the_division",
+    "name": "Tom Clancy's The Division",
+    "id": "359507798930751488",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "shellshock_live",
+    "name": "ShellShock Live",
+    "id": "359508342571401216",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "space_engineers",
+    "name": "Space Engineers",
+    "id": "359508404034600990",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_sims_4",
+    "name": "The Sims 4",
+    "id": "359509007423242240",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "call_of_duty__black_ops_iii",
+    "name": "Call of Duty: Black Ops III",
+    "id": "359509332490059776",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "counter_strike__source",
+    "name": "Counter-Strike: Source",
+    "id": "359509666876751872",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "fallout_4",
+    "name": "Fallout 4",
+    "id": "359509759642042378",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "fallout__new_vegas",
+    "name": "Fallout: New Vegas",
+    "id": "359509858728542208",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "maplestory",
+    "name": "MapleStory",
+    "id": "359510095811444736",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_witcher_3__wild_hunt",
+    "name": "The Witcher 3: Wild Hunt",
+    "id": "359510249486417920",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "half_life_2",
+    "name": "Half-Life 2",
+    "id": "359510373361254400",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "battlefield_4",
+    "name": "Battlefield 4",
+    "id": "359510680459673610",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "xcom_2",
+    "name": "XCOM 2",
+    "id": "359510740878491658",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "guild_wars_2",
+    "name": "Guild Wars 2",
+    "id": "359511228445491200",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "outlast",
+    "name": "Outlast",
+    "id": "363408634568376320",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "depth",
+    "name": "Depth",
+    "id": "363408709495291934",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "tabletop_simulator",
+    "name": "Tabletop Simulator",
+    "id": "363408834095742976",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "stellaris",
+    "name": "Stellaris",
+    "id": "363408909962182683",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "trove",
+    "name": "Trove",
+    "id": "363409000399634432",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "gang_beasts",
+    "name": "Gang Beasts",
+    "id": "363409129643180032",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_forest",
+    "name": "The Forest",
+    "id": "363409179668512788",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "europa_universalis_iv",
+    "name": "Europa Universalis IV",
+    "id": "363409417632481280",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "town_of_salem",
+    "name": "Town of Salem",
+    "id": "363409453699170304",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "robocraft",
+    "name": "Robocraft",
+    "id": "363409532480913408",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "golf_it",
+    "name": "Golf It!",
+    "id": "363409575321403402",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "shadowverse",
+    "name": "Shadowverse",
+    "id": "363409615620407316",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "7_days_to_die",
+    "name": "7 Days to Die",
+    "id": "363409643973771264",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "killing_floor_2",
+    "name": "Killing Floor 2",
+    "id": "363409749175173120",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "starcraft",
+    "name": "StarCraft",
+    "id": "363409793119158272",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "undertale",
+    "name": "UNDERTALE",
+    "id": "363409849859571722",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "fallout_shelter",
+    "name": "Fallout Shelter",
+    "id": "363411364552638464",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "slime_rancher",
+    "name": "Slime Rancher",
+    "id": "363411395854991400",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "last_man_standing",
+    "name": "Last Man Standing",
+    "id": "363411421553360896",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "titanfall_2",
+    "name": "Titanfall 2",
+    "id": "363411468441354240",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "star_wars_battlefront",
+    "name": "Star Wars Battlefront",
+    "id": "363412167934083072",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "mount___blade__warband",
+    "name": "Mount & Blade: Warband",
+    "id": "363412302998929418",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "star_wars__the_old_republic",
+    "name": "Star Wars: The Old Republic",
+    "id": "363412489599188992",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "planetside_2",
+    "name": "PlanetSide 2",
+    "id": "363412528308682752",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "psychonauts",
+    "name": "Psychonauts",
+    "id": "363412675650125825",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "call_of_duty__world_at_war",
+    "name": "Call of Duty: World at War",
+    "id": "363412728888557568",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "crossout",
+    "name": "Crossout",
+    "id": "363412799117852672",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "dofus",
+    "name": "Dofus",
+    "id": "363412841862266880",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "comedy_night",
+    "name": "Comedy Night",
+    "id": "363413176605212682",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "enter_the_gungeon",
+    "name": "Enter the Gungeon",
+    "id": "363413202090065920",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "elite__dangerous",
+    "name": "Elite: Dangerous",
+    "id": "363413225578037248",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "wizard101",
+    "name": "Wizard101",
+    "id": "363413310474813450",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "adventure_capitalist",
+    "name": "AdVenture Capitalist",
+    "id": "363413365667921930",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "age_of_empires_ii__hd_edition",
+    "name": "Age of Empires II: HD Edition",
+    "id": "363413389021675530",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "eve_online",
+    "name": "EVE Online",
+    "id": "363413402300710912",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "heat_signature",
+    "name": "Heat Signature",
+    "id": "363413452976553984",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "rimworld",
+    "name": "RimWorld",
+    "id": "363413465584500737",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "beamng_drive",
+    "name": "BeamNG.drive",
+    "id": "363413743335374859",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "sid_meier_s_civilization_vi",
+    "name": "Sid Meier's Civilization VI",
+    "id": "363413834301571072",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "the_elder_scrolls_online",
+    "name": "The Elder Scrolls Online",
+    "id": "363413894602948608",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "doom",
+    "name": "DOOM",
+    "id": "363413961967927306",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "ftl__faster_than_light",
+    "name": "FTL: Faster Than Light",
+    "id": "363414030188150801",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  },
+  {
+    "key": "realm_of_the_mad_god",
+    "name": "Realm of the Mad God",
+    "id": "363414084542005258",
+    "details": "Playing Online",
+    "state": "In Game",
+    "is_valorant": false
+  }
+]
