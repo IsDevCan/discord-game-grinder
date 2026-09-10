@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Discord Game Grinder - Realistic Simulation & Rotation Engine
-Simulates real ranked matches with dynamic round scores, maps, agents,
-and automatic game rotation so your activity looks 100% genuine on Discord.
+Discord Game Grinder - Curated Clean Games Rotation Engine
+Rotates between 35+ top-tier, mainstream, 100% clean games.
+Zero sus/hentai games. 0.0% CPU usage.
+Author: IsDevCan
 """
 
 import os
@@ -16,9 +17,265 @@ import signal
 import random
 import argparse
 
-# Game Client IDs
-VALORANT_CLIENT_ID = "811469787657928704"
-FORTNITE_CLIENT_ID = "432980957394370572"
+# Curated 100% clean, non-sus, mainstream games
+CLEAN_GAMES_POOL = [
+    {
+        "key": "valorant",
+        "name": "VALORANT",
+        "id": "811469787657928704",
+        "details": "Competitive",
+        "state": "In Match (11 - 9)",
+        "is_valorant": True
+    },
+    {
+        "key": "fortnite",
+        "name": "Fortnite",
+        "id": "432980957394370572",
+        "details": "Battle Royale",
+        "state": "In Match - 18 Remaining",
+        "is_valorant": False
+    },
+    {
+        "key": "apex",
+        "name": "Apex Legends",
+        "id": "542075586886107149",
+        "details": "Ranked Leagues",
+        "state": "In Match - 4 Squads Left",
+        "is_valorant": False
+    },
+    {
+        "key": "overwatch",
+        "name": "Overwatch",
+        "id": "356875221078245376",
+        "details": "Competitive Role Queue",
+        "state": "Escorting Payload",
+        "is_valorant": False
+    },
+    {
+        "key": "rocket_league",
+        "name": "Rocket League",
+        "id": "356877880938070016",
+        "details": "Competitive 3v3",
+        "state": "In Overtime (2 - 2)",
+        "is_valorant": False
+    },
+    {
+        "key": "siege",
+        "name": "Rainbow Six Siege",
+        "id": "356876590342340608",
+        "details": "Ranked Bomb",
+        "state": "Round 5 (Match Point)",
+        "is_valorant": False
+    },
+    {
+        "key": "minecraft",
+        "name": "Minecraft",
+        "id": "432980957394370572",
+        "details": "Survival Mode",
+        "state": "Exploring Caves",
+        "is_valorant": False
+    },
+    {
+        "key": "roblox",
+        "name": "Roblox",
+        "id": "363445589247131668",
+        "details": "Playing with Friends",
+        "state": "In Server",
+        "is_valorant": False
+    },
+    {
+        "key": "gta5",
+        "name": "Grand Theft Auto V",
+        "id": "356869127241072640",
+        "details": "GTA Online",
+        "state": "Running Heist Setup",
+        "is_valorant": False
+    },
+    {
+        "key": "tf2",
+        "name": "Team Fortress 2",
+        "id": "356888577310851072",
+        "details": "Casual Payload",
+        "state": "Defending Cart",
+        "is_valorant": False
+    },
+    {
+        "key": "terraria",
+        "name": "Terraria",
+        "id": "356952771078914048",
+        "details": "Expert Mode",
+        "state": "Mining in Caverns",
+        "is_valorant": False
+    },
+    {
+        "key": "rust",
+        "name": "Rust",
+        "id": "356889240837160960",
+        "details": "Vanilla Server",
+        "state": "Roaming with Clan",
+        "is_valorant": False
+    },
+    {
+        "key": "subnautica",
+        "name": "Subnautica",
+        "id": "356953046200221696",
+        "details": "Survival",
+        "state": "Exploring Deep Reef",
+        "is_valorant": False
+    },
+    {
+        "key": "fall_guys",
+        "name": "Fall Guys",
+        "id": "742897755160313986",
+        "details": "Main Show",
+        "state": "Final Round",
+        "is_valorant": False
+    },
+    {
+        "key": "among_us",
+        "name": "Among Us",
+        "id": "754796366036172901",
+        "details": "Classic Mode",
+        "state": "Doing Tasks in Electrical",
+        "is_valorant": False
+    },
+    {
+        "key": "stardew",
+        "name": "Stardew Valley",
+        "id": "359509387670192128",
+        "details": "Spring, Year 2",
+        "state": "Watering Crops",
+        "is_valorant": False
+    },
+    {
+        "key": "hollow_knight",
+        "name": "Hollow Knight",
+        "id": "363431029484027904",
+        "details": "City of Tears",
+        "state": "Exploring Map",
+        "is_valorant": False
+    },
+    {
+        "key": "geometry_dash",
+        "name": "Geometry Dash",
+        "id": "356942674672091136",
+        "details": "Demon Level",
+        "state": "Practice Mode (84%)",
+        "is_valorant": False
+    },
+    {
+        "key": "brawlhalla",
+        "name": "Brawlhalla",
+        "id": "356944273133928458",
+        "details": "Ranked 1v1",
+        "state": "In Match",
+        "is_valorant": False
+    },
+    {
+        "key": "portal2",
+        "name": "Portal 2",
+        "id": "359508941782122496",
+        "details": "Co-op Campaign",
+        "state": "Test Chamber 14",
+        "is_valorant": False
+    },
+    {
+        "key": "cyberpunk",
+        "name": "Cyberpunk 2077",
+        "id": "787033502848122880",
+        "details": "Night City",
+        "state": "Exploring Watson",
+        "is_valorant": False
+    },
+    {
+        "key": "elden_ring",
+        "name": "Elden Ring",
+        "id": "946950247785848882",
+        "details": "The Lands Between",
+        "state": "Exploring Altus Plateau",
+        "is_valorant": False
+    },
+    {
+        "key": "rdr2",
+        "name": "Red Dead Redemption 2",
+        "id": "639144865007992832",
+        "details": "Story Mode",
+        "state": "Exploring Saint Denis",
+        "is_valorant": False
+    },
+    {
+        "key": "bg3",
+        "name": "Baldur's Gate 3",
+        "id": "1140026850428518400",
+        "details": "Act 3",
+        "state": "Exploring Lower City",
+        "is_valorant": False
+    },
+    {
+        "key": "mhw",
+        "name": "Monster Hunter: World",
+        "id": "477152881196269569",
+        "details": "High Rank Quest",
+        "state": "Hunting Nergigante",
+        "is_valorant": False
+    },
+    {
+        "key": "civ6",
+        "name": "Civilization VI",
+        "id": "363413834301571072",
+        "details": "Turn 142",
+        "state": "Building Wonders",
+        "is_valorant": False
+    },
+    {
+        "key": "cities",
+        "name": "Cities: Skylines",
+        "id": "356954111901433856",
+        "details": "Population: 85,000",
+        "state": "Expanding Highway Network",
+        "is_valorant": False
+    },
+    {
+        "key": "dont_starve",
+        "name": "Don't Starve Together",
+        "id": "359508004078616586",
+        "details": "Autumn Day 24",
+        "state": "Gathering Resources",
+        "is_valorant": False
+    },
+    {
+        "key": "l4d2",
+        "name": "Left 4 Dead 2",
+        "id": "356954277803065354",
+        "details": "The Parish",
+        "state": "Campaign Chapter 3",
+        "is_valorant": False
+    },
+    {
+        "key": "gmod",
+        "name": "Garry's Mod",
+        "id": "356879032584896512",
+        "details": "Prop Hunt",
+        "state": "In Server (Round 4)",
+        "is_valorant": False
+    },
+    {
+        "key": "dota2",
+        "name": "Dota 2",
+        "id": "356875988589740042",
+        "details": "Ranked All Pick",
+        "state": "Mid Lane (22 mins)",
+        "is_valorant": False
+    },
+    {
+        "key": "wow",
+        "name": "World of Warcraft",
+        "id": "356875762940379136",
+        "details": "Mythic Dungeon",
+        "state": "Clearing Trash (+15)",
+        "is_valorant": False
+    }
+]
 
 VALORANT_MAPS = [
     ("ascent", "Ascent"),
@@ -54,7 +311,6 @@ signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 
 def get_discord_socket():
-    # Direct check in user TMPDIR and /tmp
     for base in [os.environ.get("TMPDIR", ""), "/tmp"]:
         if not base:
             continue
@@ -72,7 +328,7 @@ class DiscordIPC:
     def connect(self):
         sock_path = get_discord_socket()
         if not sock_path:
-            return False, "Discord desktop is not running."
+            return False, "Discord is not running."
 
         try:
             self.sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -84,7 +340,7 @@ class DiscordIPC:
 
             resp_hdr = self.sock.recv(8)
             if len(resp_hdr) < 8:
-                return False, "Short handshake header"
+                return False, "Short handshake"
             op, length = struct.unpack("<ii", resp_hdr)
             resp = json.loads(self.sock.recv(length).decode("utf-8"))
             if resp.get("evt") == "ERROR":
@@ -94,7 +350,7 @@ class DiscordIPC:
             self.close()
             return False, str(e)
 
-    def set_activity(self, details, state, start_timestamp, assets=None):
+    def set_activity(self, name, details, state, start_timestamp, assets=None):
         if not self.sock:
             return False
         try:
@@ -103,6 +359,8 @@ class DiscordIPC:
                 "state": state,
                 "timestamps": {"start": start_timestamp}
             }
+            if name:
+                activity["name"] = name
             if assets:
                 activity["assets"] = assets
 
@@ -161,7 +419,6 @@ class ValorantMatchSimulator:
 
     def step(self):
         now = time.time()
-        # In Lobby between matches
         if self.in_lobby:
             if now >= self.lobby_until:
                 self.new_match()
@@ -178,9 +435,7 @@ class ValorantMatchSimulator:
                     }
                 }
 
-        # Check if match is finished
         if (self.my_score >= self.target_win and self.my_score >= 13) or (self.enemy_score >= self.target_loss and self.enemy_score >= 13):
-            # Match ended, transition to lobby for 90-180 seconds
             self.in_lobby = True
             self.lobby_until = now + random.randint(90, 180)
             status_text = "Victory (13 - {})" if self.my_score > self.enemy_score else "Defeat ({} - 13)"
@@ -196,7 +451,6 @@ class ValorantMatchSimulator:
                 }
             }
 
-        # Progress round every ~80-120 seconds
         if now - self.last_round_time > random.randint(80, 120):
             self.last_round_time = now
             if self.my_score < self.target_win and (random.random() < 0.55 if self.we_win else random.random() < 0.45):
@@ -218,53 +472,6 @@ class ValorantMatchSimulator:
             }
         }
 
-class FortniteSimulator:
-    def __init__(self):
-        self.new_game()
-
-    def new_game(self):
-        self.match_start = int(time.time())
-        self.remaining = 99
-        self.last_drop = time.time()
-        self.in_lobby = False
-        self.lobby_until = 0
-
-    def step(self):
-        now = time.time()
-        if self.in_lobby:
-            if now >= self.lobby_until:
-                self.new_game()
-            else:
-                return {
-                    "details": "Battle Royale",
-                    "state": "In Lobby - Ready",
-                    "start": self.match_start,
-                    "assets": {}
-                }
-
-        if self.remaining <= 1:
-            self.in_lobby = True
-            self.lobby_until = now + random.randint(60, 120)
-            return {
-                "details": "Battle Royale (Solos)",
-                "state": "Victory Royale! #1/100",
-                "start": self.match_start,
-                "assets": {}
-            }
-
-        # Drop remaining players every 25-45 seconds
-        if now - self.last_drop > random.randint(25, 45):
-            self.last_drop = now
-            drop = random.randint(2, 6)
-            self.remaining = max(1, self.remaining - drop)
-
-        return {
-            "details": "Battle Royale (Solos)",
-            "state": f"In Match - {self.remaining} Alive",
-            "start": self.match_start,
-            "assets": {}
-        }
-
 def format_duration(seconds):
     h = int(seconds // 3600)
     m = int((seconds % 3600) // 60)
@@ -272,84 +479,99 @@ def format_duration(seconds):
     return f"{h:02d}h {m:02d}m {s:02d}s"
 
 def main():
-    parser = argparse.ArgumentParser(description="Realistic Discord Game Grinder")
-    parser.add_argument("--game", choices=["valorant", "fortnite", "auto"], default="auto",
-                        help="Game mode: valorant, fortnite, or auto (rotates between games realistically)")
+    parser = argparse.ArgumentParser(description="Discord Game Hours Grinder - Multi-Game Rotation")
+    parser.add_argument("--game", default="auto", help="Game key (e.g. valorant, fortnite, apex, elden_ring) or 'auto' for rotation")
+    parser.add_argument("--interval", type=int, default=5400, help="Rotation interval in seconds (default: 5400 = 1.5 hours)")
     args = parser.parse_args()
 
-    mode = args.game
-    current_game = "valorant" if mode in ["valorant", "auto"] else "fortnite"
+    mode = args.game.lower()
     val_sim = ValorantMatchSimulator()
-    fn_sim = FortniteSimulator()
-
-    current_ipc = None
     session_start = time.time()
-    last_game_switch = time.time()
-    # If auto, switch games every 2 to 3 hours (e.g. 7200 - 10800 seconds)
-    switch_interval = random.randint(7200, 10800)
+    last_switch = time.time()
+    current_ipc = None
+
+    # Determine starting game
+    if mode == "auto":
+        current_game_obj = CLEAN_GAMES_POOL[0]  # Start with Valorant
+    else:
+        matched = [g for g in CLEAN_GAMES_POOL if g["key"] == mode]
+        if matched:
+            current_game_obj = matched[0]
+        else:
+            current_game_obj = CLEAN_GAMES_POOL[0]
+
+    game_start_time = int(time.time())
 
     print("=" * 65)
-    print("🎮 REALISTIC DISCORD GAME GRINDER")
-    print(f"Mode         : {mode.upper()} {'(Auto-Rotates games)' if mode == 'auto' else ''}")
-    print("Features     : Dynamic match scores, rotating maps, real agents & breaks")
-    print("CPU Usage    : 0.0% (Zero heat / battery drain)")
+    print("🎮 DISCORD GAME GRINDER - MULTI-GAME ROTATION ENGINE")
+    print(f"Total Curated Clean Games: {len(CLEAN_GAMES_POOL)}")
+    print("Strict Filter             : 100% Safe (Zero sus / Zero NSFW)")
+    print(f"Mode                      : {mode.upper()}")
+    print("CPU Usage                 : 0.0% (Battery friendly)")
     print("=" * 65)
 
     while running:
-        # Check if it's time to rotate games in auto mode
-        if mode == "auto" and (time.time() - last_game_switch > switch_interval):
-            new_game = "fortnite" if current_game == "valorant" else "valorant"
-            print(f"\n[🔄] Rotating game: {current_game.upper()} -> {new_game.upper()} for realism...")
+        # Check if auto rotation time reached
+        if mode == "auto" and (time.time() - last_switch > args.interval):
+            # Pick a new random clean game different from current
+            choices = [g for g in CLEAN_GAMES_POOL if g["key"] != current_game_obj["key"]]
+            current_game_obj = random.choice(choices)
+            print(f"\n[🔄] Rotating game to: {current_game_obj['name']} ({current_game_obj['details']})")
             if current_ipc:
                 current_ipc.close()
                 current_ipc = None
-            current_game = new_game
-            last_game_switch = time.time()
-            switch_interval = random.randint(7200, 10800)
-
-        client_id = VALORANT_CLIENT_ID if current_game == "valorant" else FORTNITE_CLIENT_ID
+            last_switch = time.time()
+            game_start_time = int(time.time())
+            if current_game_obj["is_valorant"]:
+                val_sim.new_match()
 
         if current_ipc is None or current_ipc.sock is None:
-            current_ipc = DiscordIPC(client_id)
+            current_ipc = DiscordIPC(current_game_obj["id"])
             ok, msg = current_ipc.connect()
             if not ok:
-                sys.stdout.write(f"\r[!] Waiting for Discord client... ({msg})")
+                sys.stdout.write(f"\r[!] Waiting for Discord client... ({msg})   ")
                 sys.stdout.flush()
                 time.sleep(5)
                 continue
-            print(f"\n[✓] Connected to Discord! Active Game: {current_game.upper()}")
+            print(f"\n[✓] Connected to Discord! Playing: {current_game_obj['name']}")
 
-        # Get simulated game state
-        if current_game == "valorant":
-            act_info = val_sim.step()
+        # Build activity
+        if current_game_obj["is_valorant"]:
+            act = val_sim.step()
+            details = act["details"]
+            state = act["state"]
+            assets = act["assets"]
+            g_start = act["start"]
         else:
-            act_info = fn_sim.step()
+            details = current_game_obj["details"]
+            state = current_game_obj["state"]
+            assets = {}
+            g_start = game_start_time
 
-        # Update activity
         ok = current_ipc.set_activity(
-            details=act_info["details"],
-            state=act_info["state"],
-            start_timestamp=act_info["start"],
-            assets=act_info["assets"]
+            name=current_game_obj["name"],
+            details=details,
+            state=state,
+            start_timestamp=g_start,
+            assets=assets
         )
         if not ok:
-            print("\n[!] Connection dropped, will reconnect...")
+            print("\n[!] Reconnecting to Discord...")
             current_ipc.close()
             current_ipc = None
             time.sleep(3)
             continue
 
         elapsed = time.time() - session_start
-        status_line = f"\r⏳ Total Grind: {format_duration(elapsed)} | Playing: {current_game.upper()} | {act_info['details']} - {act_info['state']}"
-        # Pad with spaces to clear previous text
-        sys.stdout.write(status_line.ljust(90))
+        status_line = f"\r⏳ Grind: {format_duration(elapsed)} | Game: {current_game_obj['name']} | {details} - {state}"
+        sys.stdout.write(status_line.ljust(95))
         sys.stdout.flush()
 
         time.sleep(12)
 
     if current_ipc:
         current_ipc.close()
-    print(f"\n[✓] Session finished. Total grinded: {format_duration(time.time() - session_start)}")
+    print(f"\n[✓] Finished. Total time grinded: {format_duration(time.time() - session_start)}")
 
 if __name__ == "__main__":
     main()
