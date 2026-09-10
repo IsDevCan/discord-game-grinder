@@ -49,8 +49,9 @@ def fetch_games(count=65):
                 gid = g.get("id")
                 name = g.get("name")
                 if gid and name and len(name) > 2 and name not in seen:
-                    # Skip generic or broken names
-                    if any(bad in name.lower() for bad in ["test", "demo", "unknown"]):
+                    n_lower = name.lower()
+                    # Skip generic, broken, or bugged games like Dark Souls
+                    if any(bad in n_lower for bad in ["test", "demo", "unknown", "dark souls", "darksouls"]):
                         continue
                     seen.add(name)
                     games.append({"id": str(gid), "name": name})
@@ -61,7 +62,7 @@ def fetch_games(count=65):
         print(f"[!] Error fetching from Discord API: {e}. Using fallback games list.")
         return []
 
-def cycle_game(sock_path, game, duration=20):
+def cycle_game(sock_path, game, duration=18):
     """Connects to Discord, sets activity for `duration` seconds, then cleanly disconnects."""
     try:
         s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
@@ -120,7 +121,7 @@ def main():
     print("=" * 65)
     print("🏆 DISCORD 100+ GAME VARIETY BADGE UNLOCKER")
     print("Target: Cycle through 65 distinct verified games to reach 100+")
-    print("Time per game: ~18 seconds (Total estimated time: ~18-20 minutes)")
+    print("Time per game: ~18 seconds")
     print("=" * 65)
 
     sock_path = get_discord_socket()
@@ -133,30 +134,25 @@ def main():
         print("[X] Could not retrieve game list.")
         sys.exit(1)
 
-    print(f"[✓] Retrieved {len(games)} verified games! Starting unlock sequence...\n")
+    print(f"[✓] Retrieved {len(games)} verified games! (Dark Souls excluded)\n")
 
     completed = 0
     for idx, game in enumerate(games, 1):
         if not running:
             break
-        print(f"[{idx:02d}/{len(games)}] 🎮 Playing: {game['name']} (ID: {game['id']})")
+        print(f"[{idx:02d}/{len(games)}] 🎮 Playing: {game['name']}")
         ok = cycle_game(sock_path, game, duration=18)
         if ok:
             completed += 1
             print(f"       ✓ Registered with Discord! ({completed}/{len(games)} unlocked)")
         else:
-            print(f"       ! Skipped {game['name']} (connection blip)")
+            print(f"       ! Skipped {game['name']}")
 
-        # Short 2-second pause between games
         if running:
             time.sleep(2)
 
     print("\n" + "=" * 65)
-    if completed >= 50:
-        print(f"🎉 SUCCESS! Unlocked {completed} new unique games in Discord!")
-        print("Your total games played count should now exceed 100+ games!")
-    else:
-        print(f"Completed {completed} games.")
+    print(f"🎉 SUCCESS! Completed {completed} games in Discord!")
     print("=" * 65)
 
     # Resume normal grinder
