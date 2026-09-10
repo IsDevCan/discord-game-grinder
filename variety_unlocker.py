@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Discord Game Variety Badge Unlocker
-Cycles through 65+ unique official games from Discord's detectable games database
-to push your played games count past 100 and unlock the 100+ Game Variety Badge!
+Discord Game Variety Badge Unlocker (115 Clean Games Edition)
+Cycles through 115 strictly curated, non-sus, mainstream games
+from games.json to maximize your played games count on Discord!
+Author: IsDevCan
 """
 
 import os
@@ -12,9 +13,11 @@ import socket
 import struct
 import json
 import uuid
-import urllib.request
 import signal
 import subprocess
+
+DIR = os.path.dirname(os.path.abspath(__file__))
+GAMES_FILE = os.path.join(DIR, "games.json")
 
 running = True
 
@@ -36,40 +39,21 @@ def get_discord_socket():
                 return p
     return None
 
-def fetch_games(count=65):
-    print("[*] Fetching verified game IDs from Discord database...")
-    url = "https://discord.com/api/v9/applications/detectable"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(req, timeout=10) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-            games = []
-            seen = set()
-            for g in data:
-                gid = g.get("id")
-                name = g.get("name")
-                if gid and name and len(name) > 2 and name not in seen:
-                    n_lower = name.lower()
-                    # Skip generic, broken, or bugged games like Dark Souls
-                    if any(bad in n_lower for bad in ["test", "demo", "unknown", "dark souls", "darksouls"]):
-                        continue
-                    seen.add(name)
-                    games.append({"id": str(gid), "name": name})
-                if len(games) >= count:
-                    break
-            return games
-    except Exception as e:
-        print(f"[!] Error fetching from Discord API: {e}. Using fallback games list.")
-        return []
+def load_games():
+    if os.path.exists(GAMES_FILE):
+        try:
+            with open(GAMES_FILE, "r") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return []
 
-def cycle_game(sock_path, game, duration=18):
-    """Connects to Discord, sets activity for `duration` seconds, then cleanly disconnects."""
+def cycle_game(sock_path, game, duration=16):
     try:
         s = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         s.settimeout(5)
         s.connect(sock_path)
 
-        # Handshake
         payload = json.dumps({"v": 1, "client_id": game["id"]}).encode("utf-8")
         s.sendall(struct.pack("<ii", 0, len(payload)) + payload)
         hdr = s.recv(8)
@@ -78,15 +62,15 @@ def cycle_game(sock_path, game, duration=18):
             return False
         s.recv(struct.unpack("<ii", hdr)[1])
 
-        # Set Activity
         act = {
             "cmd": "SET_ACTIVITY",
             "args": {
                 "pid": os.getpid(),
                 "activity": {
-                    "details": "Playing Online",
-                    "state": "In Game",
-                    "timestamps": {"start": int(time.time()) - 120}
+                    "name": game["name"],
+                    "details": game.get("details", "Playing Online"),
+                    "state": game.get("state", "In Game"),
+                    "timestamps": {"start": int(time.time()) - 180}
                 }
             },
             "nonce": str(uuid.uuid4())
@@ -97,12 +81,10 @@ def cycle_game(sock_path, game, duration=18):
         if len(hdr) >= 8:
             s.recv(struct.unpack("<ii", hdr)[1])
 
-        # Hold the game active for duration seconds
         t_end = time.time() + duration
         while running and time.time() < t_end:
             time.sleep(1)
 
-        # Clear activity
         clear = json.dumps({
             "cmd": "SET_ACTIVITY",
             "args": {"pid": os.getpid(), "activity": None},
@@ -114,52 +96,51 @@ def cycle_game(sock_path, game, duration=18):
             pass
         s.close()
         return True
-    except Exception as e:
+    except Exception:
         return False
 
 def main():
     print("=" * 65)
-    print("🏆 DISCORD 100+ GAME VARIETY BADGE UNLOCKER")
-    print("Target: Cycle through 65 distinct verified games to reach 100+")
-    print("Time per game: ~18 seconds")
+    print("🤖 JARVIS PROTOCOL: 115 GAME VARIETY UNLOCKER ENGAGED")
+    print("Curated Clean Games Pool : 115 Verified Titles")
+    print("Strict Safety Filter     : 100% Non-Sus / Zero NSFW")
+    print("Time Per Game            : ~16 seconds")
     print("=" * 65)
 
     sock_path = get_discord_socket()
     if not sock_path:
-        print("[X] Discord desktop is not running! Please open Discord and try again.")
+        print("[X] Discord desktop is not running! Launch Discord first.")
         sys.exit(1)
 
-    games = fetch_games(65)
+    games = load_games()
     if not games:
-        print("[X] Could not retrieve game list.")
+        print("[X] No games found in games.json.")
         sys.exit(1)
 
-    print(f"[✓] Retrieved {len(games)} verified games! (Dark Souls excluded)\n")
+    print(f"[✓] Initialized {len(games)} clean games! Commencing sequence...\n")
 
     completed = 0
     for idx, game in enumerate(games, 1):
         if not running:
             break
-        print(f"[{idx:02d}/{len(games)}] 🎮 Playing: {game['name']}")
-        ok = cycle_game(sock_path, game, duration=18)
+        print(f"[{idx:03d}/{len(games)}] 🎮 Playing: {game['name']}")
+        ok = cycle_game(sock_path, game, duration=16)
         if ok:
             completed += 1
-            print(f"       ✓ Registered with Discord! ({completed}/{len(games)} unlocked)")
+            print(f"        ✓ Registered with Discord! ({completed}/{len(games)} complete)")
         else:
-            print(f"       ! Skipped {game['name']}")
+            print(f"        ! Skipped {game['name']}")
 
         if running:
-            time.sleep(2)
+            time.sleep(1)
 
     print("\n" + "=" * 65)
-    print(f"🎉 SUCCESS! Completed {completed} games in Discord!")
+    print(f"🏆 PROTOCOL COMPLETE: {completed} games registered with Discord!")
     print("=" * 65)
 
-    # Resume normal grinder
-    dir_path = os.path.dirname(os.path.abspath(__file__))
-    start_script = os.path.join(dir_path, "start.sh")
+    start_script = os.path.join(DIR, "start.sh")
     if os.path.exists(start_script) and running:
-        print("\n[*] Automatically resuming normal Game Grinder (Valorant/Fortnite)...")
+        print("\n[*] Re-engaging 24/7 Hours Grinder Protocol...")
         subprocess.run([start_script, "auto"])
 
 if __name__ == "__main__":
