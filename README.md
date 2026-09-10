@@ -51,3 +51,4 @@ A lightweight, zero-CPU Discord automation suite that grinds game hours and unlo
 - **No Self-Botting:** Never touches your account token or password.
 - **Official IPC Protocol:** Uses Discord's built-in local IPC socket (`discord-ipc-0`), identical to Spotify and official game integrations.
 - **Client Integrity:** Does not inject or modify Discord client files.
+
